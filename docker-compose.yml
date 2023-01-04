@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+    at-h2:
+        image: buildo/h2database
+        container_name: at-h2
+        hostname: at-h2
+        restart: always
+        ports:
+        - $DB_H2_TCP:1521
+        - $DB_H2_WEB:8082
+        volumes:
+        - ath2-data:/h2-data
+        networks:
+        - at-network
+
+    at-api:
+        container_name: at-api
+        hostname: at-api
+        build:
+            context: .
+        working_dir: /app
+        user: $LOCAL_USER_NAME
+        command: ./mvnw spring-boot:run
+        tty: true
+        env_file: .env
+        ports:
+        - $API_PORT:$API_PORT
+        volumes:
+        - .:/app:delegated
+        - home:/home/$LOCAL_USER_NAME
+        networks:
+        - at-network
+
+volumes:
+    ath2-data:
+    home:
+
+networks:
+    at-network:
