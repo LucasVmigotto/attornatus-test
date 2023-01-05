@@ -103,4 +103,15 @@ public class Address {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Address [" +
+        " ZIP: " + this.zip +
+        " Street: " + this.street +
+        " Number: " + this.number +
+        " City: " + this.city +
+        " State: " + this.state +
+        " ]";
+    }
 }

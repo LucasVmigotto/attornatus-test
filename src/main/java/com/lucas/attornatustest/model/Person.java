@@ -2,6 +2,7 @@ package com.lucas.attornatustest.model;
 
 import java.util.Set;
 import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -70,11 +71,16 @@ public class Person {
         this.addresses = addresses;
     }
 
+    public void addAddress(Address address) {
+        this.addresses.add(address);
+    }
+
     @Override
     public String toString() {
         return "Person [" +
         " Name: " + this.name +
         " Birthdate: " + this.birthdate +
+        " Addreses: " + this.addresses +
         " ]";
     }
 
