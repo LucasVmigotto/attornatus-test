@@ -60,7 +60,7 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Person> update(@RequestBody Person person, @PathVariable("id") Long id) throws NotFoundException {
-        Optional<Person> personExists = repository.findById(person.getId());
+        Optional<Person> personExists = repository.findById(id);
         if (personExists.isPresent()) {
             Person updated = personExists.get();
             updated.setName(person.getName());
